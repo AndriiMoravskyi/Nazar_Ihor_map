@@ -34,6 +34,7 @@ import MapKit
         locationManager.startUpdatingLocation()
         centerMap(latitude: kInitialMapLatitude, longitude: kInitialMapLongitude)
         mapView.delegate = self
+        addBoundry()
         
         }
     
@@ -128,6 +129,25 @@ import MapKit
             break
         }
     }
+    
+    func addBoundry()
+    {
+        var points=[CLLocationCoordinate2DMake(49.913104, 23.461022),CLLocationCoordinate2DMake(49.916990, 23.477445),CLLocationCoordinate2DMake(49.909916, 23.481738), CLLocationCoordinate2DMake(49.908124, 23.463992)]
+    
+        
+       let polygon = MKPolygon(coordinates: &points, count: points.count)
+        
+        mapView.add(polygon)
+    }
+    
+    
+    let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+
 }
 
 // MARK: - MKMapViewDelegate

@@ -73,9 +73,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zX5-Wn-8hb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Us3-Vn-Wt2" appends="YES" id="Tod-xz-OeX"/>
-                                </connections>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BP7-R0-27b">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -184,11 +181,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44b-LS-qqz" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Us3-Vn-Wt2">
-                    <connections>
-                        <action selector="handleTap:" destination="hFC-kI-2DV" id="bhl-Ik-m54"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1176.8" y="123.68815592203899"/>
         </scene>
@@ -197,7 +189,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Tw-Dp-0lQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ENt-2U-eEg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ENt-2U-eEg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
