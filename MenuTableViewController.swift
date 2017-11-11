@@ -2,8 +2,8 @@
 //  MenuTableViewController.swift
 //  WeatherApp
 //
-//  Created by Oleksiy Bilyi on 2/19/17.
-//  Copyright © 2017 Oleksiy Bilyi. All rights reserved.
+//  Created by Nazar Kuradovetson on 2/19/17.
+//  Copyright © 2017 Nazar Kuradovetson. All rights reserved.
 //
 
 import UIKit

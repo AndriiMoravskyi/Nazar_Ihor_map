@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  WeatherApp
 //
-//  Created by Oleksiy Bilyi on 2/15/17.
-//  Copyright © 2017 Oleksiy Bilyi. All rights reserved.
+//  Created by Nazar Kuradovetson 2/15/17.
+//  Copyright © 2017 Nazar Kuradovetson. All rights reserved.
 //
 
 import UIKit

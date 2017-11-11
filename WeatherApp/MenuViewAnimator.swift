@@ -2,8 +2,8 @@
 //  MenuViewAnimator.swift
 //  WeatherApp
 //
-//  Created by Oleksiy Bilyi on 2/21/17.
-//  Copyright © 2017 Oleksiy Bilyi. All rights reserved.
+//  Created by Nazar Kuradovetsonon 2/21/17.
+//  Copyright © 2017 Nazar Kuradovetson. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  WeatherApp
 //
-//  Created by Oleksiy Bilyi on 2/15/17.
-//  Copyright © 2017 Oleksiy Bilyi. All rights reserved.
+//  Created by Nazar Kuradovetson on 2/15/17.
+//  Copyright © 2017 Nazar Kuradovetson. All rights reserved.
 //
 
 import UIKit
@@ -13,7 +13,6 @@ import MapKit
     
     // MARK: - Parameters
     let locationManager = CLLocationManager()
-    let transition = DetailViewAnimator()
     let menuTransition = MenuViewAnimator()
     var currentOverlay = MKTileOverlay()
     var mapOverlay = MKTileOverlay()
@@ -28,7 +27,8 @@ import MapKit
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
+        title = "Solar Map"
+        locationManager.delegate = self as? CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -37,22 +37,9 @@ import MapKit
         
         }
     
-    @IBAction func relief(_ sender: UIButton){
-   
-            mapView.remove(mapOverlay)
-            mapOverlay.canReplaceMapContent = true
-            mapView.mapType = MKMapType.satellite
-
-    }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailsSegueIdentifier" {
-            if let detailController = segue.destination as? DetailViewController {
-                detailController.transitioningDelegate = self
-                detailController.modalPresentationStyle = .overCurrentContext
-                detailController.pointCoordinates = tapCoordinates
-            }
-        } else if segue.identifier == "menuSegueIdentifier" {
+            if segue.identifier == "menuSegueIdentifier" {
             if let menuController = segue.destination as? MenuTableViewController {
                 menuController.modalPresentationStyle = .custom
                 menuController.transitioningDelegate = menuTransition
@@ -60,25 +47,7 @@ import MapKit
         }
     }
     
-    // MARK: - IBActions
-    /// User tap handler
-    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
-        
-        let location = sender.location(in: mapView)
-        tapCoordinates = mapView.convert(location, toCoordinateFrom: mapView)
-    
-        centerMap(latitude: tapCoordinates.latitude + 3, longitude: tapCoordinates.longitude)
-        
-        if let tapAnnotation  = self.tapAnnotation {
-            mapView.removeAnnotation(tapAnnotation)
-        }
-        
-        tapAnnotation = WeatherCustomAnnotation(coordinate: tapCoordinates)
-        mapView.addAnnotation(tapAnnotation!)
-        
-        performSegue(withIdentifier: "detailsSegueIdentifier", sender: nil)
-    }
-    
+
     @IBAction func unwindToMap(segue: UIStoryboardSegue) {
         let sourceController = segue.source as! MenuTableViewController
         setOverlay(option: sourceController.selectedOption)
@@ -175,61 +144,5 @@ extension ViewController: MKMapViewDelegate {
             return render
         }
         return MKOverlayRenderer()
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? WeatherCustomAnnotation {
-            let identifier = "touchPin"
-            var view : MKAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                UIGraphicsBeginImageContext(CGSize(width: 20, height: 20))
-                #imageLiteral(resourceName: "circle").draw(in: CGRect(x: 0, y: 0, width: 20, height: 20))
-                let circleImage = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                view.image = circleImage
-                view.canShowCallout = false
-            }
-            return view
-        }
-        return nil
-    }
-    
-}
-
-// MARK: - CLLocationManagerDelegate
-extension ViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let currentCoordinate = locations[0].coordinate
-        tapCoordinates = CLLocationCoordinate2D(latitude: currentCoordinate.latitude,
-                                                longitude: currentCoordinate.longitude)
-        self.locationManager.stopUpdatingLocation()
-        if let tapAnnotation  = self.tapAnnotation {
-            mapView.removeAnnotation(tapAnnotation)
-        }
-        
-        tapAnnotation = WeatherCustomAnnotation(coordinate: tapCoordinates)
-        mapView.addAnnotation(tapAnnotation!)
-        centerMap(latitude: tapCoordinates.latitude + 3, longitude: tapCoordinates.longitude)
-        performSegue(withIdentifier: "detailsSegueIdentifier", sender: nil)
-        
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension ViewController: UIViewControllerTransitioningDelegate {
-    
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
-    }
-    
+    }    
 }
