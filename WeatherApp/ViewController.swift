@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  WeatherApp
+//  SolarMap
 //
 //  Created by Nazar Kuradovetson on 2/15/17.
 //  Copyright © 2017 Nazar Kuradovetson. All rights reserved.
@@ -16,7 +16,6 @@ import MapKit
     let menuTransition = MenuViewAnimator()
     var currentOverlay = MKTileOverlay()
     var mapOverlay = MKTileOverlay()
-    var tapAnnotation : WeatherCustomAnnotation? = nil
     var tapCoordinates = CLLocationCoordinate2D()
     
     // MARK: - IBOutlets

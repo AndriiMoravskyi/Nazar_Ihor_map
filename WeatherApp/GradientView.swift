@@ -1,6 +1,6 @@
 //
 //  GradientView.swift
-//  WeatherApp
+//  SolarMap
 //
 //  Created by Nazar Kuradovetson on 2/16/17.
 //  Copyright © 2017 Nazar Kuradovetson. All rights reserved.

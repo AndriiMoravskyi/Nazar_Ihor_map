@@ -1,6 +1,6 @@
 //
 //  Interfaces.swift
-//  WeatherApp
+//  SolarMap
 //
 //  Created by Nazar Kuradovets on 2/18/17.
 //  Copyright © 2017 Nazar Kuradovets. All rights reserved.

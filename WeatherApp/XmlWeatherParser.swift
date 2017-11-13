@@ -1,9 +1,9 @@
 //
 //  XmlWeatherParser.swift
-//  WeatherApp
+//  SolarMap
 //
-//  Created by Oleksiy Bilyi on 2/18/17.
-//  Copyright © 2017 Oleksiy Bilyi. All rights reserved.
+//  Created by Nazar Kuradovets on 2/18/17.
+//  Copyright © 2017 Nazar Kuradovets. All rights reserved.
 //
 
 import UIKit
